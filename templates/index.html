@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Music Recommendation System</h1>
+    <form action="/recommend" method="post">
+        <label for="track_name">Enter a track name:</label>
+        <input type="text" id="track_name" name="track_name" required>
+        <button type="submit">Get Recommendations</button>
+    </form>
+</body>
+</html>

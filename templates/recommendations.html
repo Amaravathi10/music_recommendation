@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations for {{ track_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Recommendations for {{ track_name }}</h1>
+    <h2>KNN Recommendations</h2>
+    <ul>
+        {% for track in knn_recommendations %}
+            <li>{{ track }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Content-Based Recommendations</h2>
+    <ul>
+        {% for track in content_based_recommendations %}
+            <li>{{ track }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Hybrid Recommendations</h2>
+    <ul>
+        {% for track in hybrid_recommendations %}
+            <li>{{ track }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
