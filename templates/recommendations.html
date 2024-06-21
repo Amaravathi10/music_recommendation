@@ -1,34 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Recommendations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        h1, h2 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .recommendations {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Recommendations for {{ track_name }}</h1>
-    
-    <h2>KNN Recommendations</h2>
-    <ul>
-        {% for rec in knn_recommendations %}
-        <li>{{ rec }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>Content-Based Recommendations</h2>
-    <ul>
-        {% for rec in content_based_recommendations %}
-        <li>{{ rec }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>Hybrid Recommendations</h2>
-    <ul>
-        {% for rec in hybrid_recommendations %}
-        <li>{{ rec }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>Top 10 Tracks</h2>
-    <div id="bar_chart">{{ bar_chart|safe }}</div>
+    <div class="container">
+        <h1>Recommendations for {{ track_name }}</h1>
+        
+        <div class="recommendations">
+            <h2>KNN Recommendations</h2>
+            <ul class="list-group">
+                {% for rec in knn_recommendations %}
+                <li class="list-group-item">{{ rec }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        
+        <div class="recommendations">
+            <h2>Hybrid Recommendations</h2>
+            <ul class="list-group">
+                {% for rec in hybrid_recommendations %}
+                <li class="list-group-item">{{ rec }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="recommendations">
+            <h2>Top 10 Artists</h2>
+            <div id="bar_chart">{{ bar_chart|safe }}</div>
+        </div>
+    </div>
 </body>
 </html>

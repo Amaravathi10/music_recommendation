@@ -6,7 +6,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.neighbors import NearestNeighbors
 import plotly.express as px
-import plotly.graph_objects as go
 import plotly.io as pio
 
 app = Flask(__name__)
@@ -20,7 +19,7 @@ def load_streaming_history(filepaths):
 
 # Assuming 'data' directory is in the same directory as the script
 base_dir = os.path.dirname(os.path.abspath(__file__))
-filepaths = [os.path.join(base_dir, 'data', f'StreamingHistory_music_{i}.json') for i in range(N)]  # Replace N with the number of files
+filepaths = [os.path.join(base_dir, 'data', f'StreamingHistory_music_{i}.json') for i in range(3)]  # Replace N with the number of files
 
 df = load_streaming_history(filepaths)
 
@@ -79,9 +78,10 @@ def recommend():
     content_based_recommendations = get_content_based_recommendations(track_name)
     hybrid_recommendations_list = hybrid_recommendations(user_item_matrix, track_name)
     
-    # Visualization
-    track_play_counts = df['trackName'].value_counts().head(10)
-    fig = px.bar(track_play_counts, x=track_play_counts.index, y=track_play_counts.values, labels={'x':'Track Name', 'y':'Play Counts'}, title='Top 10 Tracks')
+    # Visualization of top artists
+    top_artists = df['artistName'].value_counts().head(10)
+    fig = px.bar(top_artists, x=top_artists.values, y=top_artists.index, orientation='h',
+                 labels={'x':'Play Counts', 'y':'Artist Name'}, title='Top 10 Artists')
     bar_chart = pio.to_html(fig, full_html=False)
     
     return render_template('recommendations.html', 
