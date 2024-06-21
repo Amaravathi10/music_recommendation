@@ -1,7 +1,7 @@
 # Music Recommendation System
 
 This project is a music recommendation system that uses both collaborative filtering and content-based filtering to recommend tracks. Additionally, it displays a horizontal bar graph of the top artists based on the streaming history.
-(## Note: Data I used is my own spotify data which I downloaded from the app.)
+#### Note: Data I used is my own spotify data which I downloaded from the app.
 ![main](images/pic1.png)
 
 ## Table of Contents
