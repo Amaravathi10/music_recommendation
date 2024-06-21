@@ -1,30 +1,27 @@
 import json
+import os
 import pandas as pd
 from flask import Flask, render_template, request
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
 
 app = Flask(__name__)
 
-# Load the JSON files
 def load_streaming_history(filepaths):
-    data_frames = []
+    data = []
     for filepath in filepaths:
-        with open(filepath, 'r') as file:
-            data = json.load(file)
-            data_frames.append(pd.DataFrame(data))
-    return pd.concat(data_frames, ignore_index=True)
+        with open(filepath, 'r', encoding='utf-8') as file:
+            data.extend(json.load(file))
+    return pd.json_normalize(data)
 
-# Filepaths to the streaming history JSON files
-filepaths = [
-    '../data/StreamingHistory_music_0.json',
-    '../data/StreamingHistory_music_1.json',
-    '../data/StreamingHistory_music_2.json'
-]
+# Assuming 'data' directory is in the same directory as the script
+base_dir = os.path.dirname(os.path.abspath(__file__))
+filepaths = [os.path.join(base_dir, 'data', f'StreamingHistory_music_{i}.json') for i in range(N)]  # Replace N with the number of files
 
-# Load data
 df = load_streaming_history(filepaths)
 
 # Data preprocessing
@@ -80,13 +77,19 @@ def recommend():
     track_name = request.form['track_name']
     knn_recommendations = get_knn_recommendations(user_item_matrix, track_name)
     content_based_recommendations = get_content_based_recommendations(track_name)
-    hybrid_recommendations = hybrid_recommendations(user_item_matrix, track_name)
+    hybrid_recommendations_list = hybrid_recommendations(user_item_matrix, track_name)
+    
+    # Visualization
+    track_play_counts = df['trackName'].value_counts().head(10)
+    fig = px.bar(track_play_counts, x=track_play_counts.index, y=track_play_counts.values, labels={'x':'Track Name', 'y':'Play Counts'}, title='Top 10 Tracks')
+    bar_chart = pio.to_html(fig, full_html=False)
     
     return render_template('recommendations.html', 
-                            track_name=track_name, 
-                            knn_recommendations=knn_recommendations, 
-                            content_based_recommendations=content_based_recommendations, 
-                            hybrid_recommendations=hybrid_recommendations)
+                           track_name=track_name, 
+                           knn_recommendations=knn_recommendations, 
+                           content_based_recommendations=content_based_recommendations, 
+                           hybrid_recommendations=hybrid_recommendations_list,
+                           bar_chart=bar_chart)
 
 if __name__ == '__main__':
     app.run(debug=True)
