@@ -57,4 +57,30 @@ The Music Recommendation System provides personalized music recommendations base
 3. **Enter a track name** in the input field and click on the "Get Recommendations" button to see the recommended tracks and top artists visualization.
 
 ## File Structure
+music_recommendation/
+│
+├── app.py # Main Flask application
+├── requirements.txt # Required Python packages
+├── templates/
+│ ├── index.html # Homepage template
+│ └── recommendations.html # Recommendations and visualization template
+├── data/
+│ └── StreamingHistory_music_0.json # Example streaming history file
+├── README.md # Project documentation
+└── static/
+└── style.css # Optional CSS for additional styling
+
+## Technologies Used
+
+- **Python**: Main programming language
+- **Flask**: Web framework
+- **Pandas**: Data manipulation and analysis
+- **scikit-learn**: Machine learning library for collaborative and content-based filtering
+- **Plotly**: Library for creating interactive visualizations
+- **HTML/CSS**: Frontend templating and styling
+- **JavaScript**: Optional, for enhancing interactivity
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
