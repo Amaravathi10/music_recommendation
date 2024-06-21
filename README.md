@@ -1,6 +1,8 @@
 # Music Recommendation System
 
 This project is a music recommendation system that uses both collaborative filtering and content-based filtering to recommend tracks. Additionally, it displays a horizontal bar graph of the top artists based on the streaming history.
+(## Note: Data I used is my own spotify data which I downloaded from the app.)
+![main](images/pic1.png)
 
 ## Table of Contents
 
@@ -22,6 +24,7 @@ The Music Recommendation System provides personalized music recommendations base
 - **Content-Based Filtering**: Recommends tracks using cosine similarity on TF-IDF vectorized track names.
 - **Hybrid Recommendations**: Combines both collaborative and content-based recommendations.
 - **Top Artists Visualization**: Displays a horizontal bar graph of the top artists.
+  
 
 ## Installation
 
@@ -55,6 +58,9 @@ The Music Recommendation System provides personalized music recommendations base
 2. **Open your web browser** and navigate to `http://127.0.0.1:5000/`.
 
 3. **Enter a track name** in the input field and click on the "Get Recommendations" button to see the recommended tracks and top artists visualization.
+4. ![Main Page](images/pic1.png)
+5. ![Recommendations based on Streaming History](images/pic2.png)
+6. ![Top Artists Visualization](images/pic3.png)
 
 ## File Structure
 music_recommendation/
