@@ -58,23 +58,10 @@ The Music Recommendation System provides personalized music recommendations base
 2. **Open your web browser** and navigate to `http://127.0.0.1:5000/`.
 
 3. **Enter a track name** in the input field and click on the "Get Recommendations" button to see the recommended tracks and top artists visualization.
-4. ![Main Page](images/pic1.png)
-5. ![Recommendations based on Streaming History](images/pic2.png)
-6. ![Top Artists Visualization](images/pic3.png)
+ ![Main Page](images/pic1.png)
+ ![Recommendations based on Streaming History](images/pic2.png)
+ ![Top Artists Visualization](images/pic3.png)
 
-## File Structure
-music_recommendation/
-│
-├── app.py # Main Flask application
-├── requirements.txt # Required Python packages
-├── templates/
-│ ├── index.html # Homepage template
-│ └── recommendations.html # Recommendations and visualization template
-├── data/
-│ └── StreamingHistory_music_0.json # Example streaming history file
-├── README.md # Project documentation
-└── static/
-└── style.css # Optional CSS for additional styling
 
 ## Technologies Used
 
